@@ -7,6 +7,7 @@ requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
 
 [nix]
 channel = "stable-24_11"
+packages = ["glib", "gtk3", "alsa-lib", "nss", "mesa", "xorg.libXScrnSaver", "xorg.libXrandr", "xorg.libXcursor", "xorg.libXi", "xorg.libXtst", "cups", "dbus", "expat", "libdrm", "xorg.libxcb", "libxkbcommon"]
 
 [deployment]
 run = ["node", "index.js"]
@@ -15,3 +16,26 @@ ignorePorts = false
 
 [agent]
 expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "cypress-tests"
+
+[[workflows.workflow]]
+name = "cypress-tests"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm test"
+
+[workflows.workflow.metadata]
+outputType = "console"
