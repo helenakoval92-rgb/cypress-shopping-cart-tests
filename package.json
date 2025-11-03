@@ -14,6 +14,8 @@
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^15.5.0"
+  },
   "description": ""
 }
